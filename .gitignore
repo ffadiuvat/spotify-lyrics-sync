@@ -1,0 +1,6 @@
+__pycache__
+config.ini
+.cache*
+.vscode
+secret
+venv
