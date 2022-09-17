@@ -16,7 +16,6 @@ class Synchronizer:
         self.broadcaster.send(current_line)
         sleep_time = (abs(tl[n]['startTimeMs']-progress_ms)/1000)+1
         time.sleep(sleep_time)
-        # print('\033[10;0H\033[?25h')
 
   def show_no_lyric(self):
     self.broadcaster.send_no_lyric()
