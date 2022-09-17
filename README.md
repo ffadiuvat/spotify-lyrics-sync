@@ -1,5 +1,3 @@
-# saipul
-## Spotify Lyric Sync to Multiple Display
 
 This is a python script to sync lirik with your spotify playback in terminal. This is build by using spotify api to get the playback state and [syair.info](https://syair.info) as the lyric provider
 
