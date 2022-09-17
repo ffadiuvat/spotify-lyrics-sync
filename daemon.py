@@ -41,5 +41,6 @@ class Daemon:
         time.sleep(10)
       except AddPlayingException:
         self.broadcaster.send_raw('Playing ads')
+        time.sleep(10)
       except Exception as e:
         raise e
