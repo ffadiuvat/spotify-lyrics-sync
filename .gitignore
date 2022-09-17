@@ -4,3 +4,4 @@ config.ini
 .vscode
 secret
 venv
+test.py

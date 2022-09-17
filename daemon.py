@@ -31,6 +31,7 @@ class Daemon:
             break
           if(not lyrics):
             self.broadcaster.send_raw('Lyrics is not available at the moment')
+            time.sleep(10)
           else:
             timeline = lyrics.toSpotifyLyrics()
             self.synchronizer.sync(timeline, self.pb.progress_ms)

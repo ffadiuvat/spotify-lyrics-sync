@@ -1,9 +1,10 @@
 import configparser
 
+from serial import Serial
 from spotipy import Spotify, util
 
 from daemon import Daemon
-from displays import DisplayBroadcaster, TerminalDisplay
+from displays import DisplayBroadcaster, LCDDisplay, TerminalDisplay
 from playback import Playback
 from providers.custom_provider import CustomLyricsProvider
 from synchronizer import Synchronizer
@@ -32,8 +33,10 @@ client = Spotify(auth=token)
 engine = CustomLyricsProvider()
 playback = Playback(client)
 
+serial = Serial('COM4', 115200)
 broadcaster = DisplayBroadcaster()
 broadcaster.add_display(TerminalDisplay())
+broadcaster.add_display(LCDDisplay(serial))
 
 synchronizer = Synchronizer(broadcaster)
 daemon = Daemon(engine, playback, synchronizer, broadcaster)

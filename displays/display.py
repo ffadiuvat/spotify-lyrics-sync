@@ -25,3 +25,16 @@ class TerminalDisplay(Display):
 
   def show_raw(self, raw):
      print('\033[4;0H\033[K\t \033[1;36m >:{}:< \033[0m'.format(raw))
+
+class LCDDisplay(Display):
+  def __init__(self, serial):
+    self.serial = serial
+
+  def show(self, data):
+    self.serial.write(bytes(data+'\n', 'utf-8'))
+
+  def show_raw(self, raw):
+    self.serial.write(bytes(raw+'\n', 'utf-8'))
+
+  def show_artist_title(self, artist, title):
+    pass
