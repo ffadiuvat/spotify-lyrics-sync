@@ -3,9 +3,10 @@ import configparser
 from spotipy import Spotify, util
 
 from daemon import Daemon
-from displays import Display
+from displays import DisplayBroadcaster, TerminalDisplay
 from playback import Playback
 from providers.custom_provider import CustomLyricsProvider
+from synchronizer import Synchronizer
 
 cfg = configparser.ConfigParser()
 cfg.read('./config.ini')
@@ -30,7 +31,12 @@ if not token:
 client = Spotify(auth=token)
 engine = CustomLyricsProvider()
 playback = Playback(client)
-display = Display()
-daemon = Daemon(engine, playback, display)
+
+broadcaster = DisplayBroadcaster()
+broadcaster.add_display(TerminalDisplay())
+
+synchronizer = Synchronizer(broadcaster)
+daemon = Daemon(engine, playback, synchronizer, broadcaster)
+
 
 daemon.run()
